@@ -1,0 +1,1 @@
+<a href="{% url 'adminDeleteUser' user.id %}">Remove User</a>

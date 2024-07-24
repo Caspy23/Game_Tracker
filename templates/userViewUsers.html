@@ -1,0 +1,121 @@
+{% extends "userbase.html" %} {% block content %}
+<!--//header-w3l-->
+<!--/w3l-inner-page-breadcrumb-->
+<style>
+	.w3l-inner-page-breadcrumb,
+	.topHead,
+	#contact {
+		/* background-color: rgb(221, 220, 220); */
+		background-color: #d0d3d4;
+	}
+	.user {
+		width: 20%;
+		max-height: 10em;
+		justify-content: space-around;
+	}
+	.user img {
+		width: 120px;
+		height: 120px;
+		margin-top: 15px;
+		border-radius: 50%;
+	}
+	.user .cont {
+		align-items: center;
+		margin-top: 15%;
+	}
+	.ses {
+		display: flex;
+	}
+	img:hover {
+		cursor: pointer;
+	}
+	.content {
+		width: 80%;
+		padding: 20px;
+		border-left: 1px dotted #000;
+		padding-left: 30px;
+	}
+	.useridea img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-right: 10px;
+	}
+	.ideaContent p {
+		text-align: justify;
+		overflow: hidden;
+	}
+	.ideaContent h4 {
+		margin-top: 20px;
+		text-align: center;
+	}
+	.idea {
+		background-color: #fbfcfc;
+		padding: 20px;
+		border: 1px dashed brown;
+		width: 80%;
+	}
+
+	.line-clamp {
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+	}
+	ul{
+		list-style: none;
+	}
+</style>
+<section class="container-fluid w3l-inner-page-breadcrumb ses"></section>
+<!-- //w3l-inner-page-breadcrumb-->
+<!-- /contact-section -->
+<div class="w3l-contact-10" id="contact">
+	<div class="form-41-mian py-lg-5 py-md-4 py-2">
+		<div class="container-fluid d-flex">
+			<div class="user d-flex">
+				<div class="cont">
+					<a href="#"
+						><h3>Name: {{user.name}}</h3>
+						<h5>Email: {{user.email}}</h5>
+						<h5>Phone: {{user.phone}}</h5>
+						<h5>Address: {{user.address}}</h5>
+					</a>
+				</div>
+			</div>
+			<div class="w3-services-grids py-lg-4 text-center" style="padding: 20px;">
+				<div class="fea-gd-vv row">
+					{% for i in data %}
+					<div class="col-lg-4 col-md-7" style="margin-bottom: 30px">
+						<div class="feature-gd icon-yellow">
+							<div class="icon">
+								<i
+									><img
+										src="{{i.img}}"
+										style="
+											width: 300px;
+											height: 300px;
+											padding-right: 26px;
+											padding-bottom: 5px;
+											border-radius: 50%;
+										"
+								/></i>
+							</div>
+							<div class="info" style="margin-top: 50px; text-align: center;">
+								<h4>{{i.name}}</h4>
+								<h6>Current Status: {{i.status}}</h6>
+								<a href="/userViewGame?id={{i.gameid}}" class="btn btn-primary">View Game</a><br>
+								<em>{{i.date}}</em><br>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<!-- //contacts-5-grid -->
+	</div>
+</div>
+
+<!-- //contact-section -->
+<!-- footer -->
+
+{% endblock %}

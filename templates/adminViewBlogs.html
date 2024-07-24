@@ -1,0 +1,88 @@
+{% extends "adminbase.html" %} {% block content %}
+<!--//header-w3l-->
+<!--/w3l-inner-page-breadcrumb-->
+<style>
+	.ideaContent p {
+		text-align: justify;
+	}
+	.ideaContent h4 {
+		margin-top: 20px;
+		text-align: center;
+	}
+	.idea {
+		border-bottom: 1px dotted brown;
+		padding: 20px 0;
+	}
+</style>
+<section class="w3l-inner-page-breadcrumb">
+</section>
+<!-- //w3l-inner-page-breadcrumb-->
+<!-- /contact-section -->
+<div class="w3l-contact-10" id="contact">
+	<div class="form-41-mian">
+		<div class="container">
+			<div class="header-title text-center mx-auto">
+				<h3 class="title-w3l">Blog</h3>
+			</div>
+			<div class="contacts-5-grid-main mt-4">
+				<div class="form-inner-cont">
+					<div class="idea container">
+						<div class="useridea d-flex">
+							<div class="d-flex">
+								<div class="">
+									<em
+										><strong
+											><a href="#"
+												>{{data.users.name}}</a
+											></strong
+										><br /><small>{{data.date}}</small></em
+									>
+								</div>
+							</div>
+						</div>
+						<div class="ideaContent container">
+							<h4>{{data.title}}:</h4><br>
+							<div class="text-center">
+								<a href="/static/media/{{data.img}}" target="_blank"><img src="/static/media/{{data.img}}" width="400" alt=""></a>
+							</div><br>
+							<p class="line-clamp">{{data.desc}}</p>
+						</div>
+						<form action="" method="post">
+							{% csrf_token %}
+							<div style="display: flex; padding: 10px">
+								<input
+									type="text"
+									name="comment"
+									placeholder="Enter Your Comment..."
+									style="width: 90%;"
+								/>
+								<input
+									type="submit"
+									value="Post"
+									class="bg-primary text-light"
+									style="width: 10%; height: 100px"
+								/>
+							</div>
+						</form>
+						{% for c in comments %}
+						<div
+							class="comment"
+							style="border-bottom: 1px dotted brown; padding: 10px"
+						>
+							<p>{{c.comment}}</p>
+							<h6><a href="#">{{c.users.name}}</a></h6>
+							<small>{{c.date}}</small>
+						</div>
+						{% endfor %}
+						<br /><br />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //contacts-5-grid -->
+	</div>
+</div>
+
+<!-- //contact-section -->
+<!-- footer -->
+{% endblock %}

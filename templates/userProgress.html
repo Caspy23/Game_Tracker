@@ -1,0 +1,61 @@
+{% extends "userbase.html" %} {% block content %}
+<section id="contact" class="contact">
+	
+	<div class="container mt-5">
+		{% if data %}
+		<div class="section-title">
+			<h2></h2>
+			<h3>Game Status</h3>
+		</div>
+
+		<div class="row mt-5">
+			<div class="forTable">
+				<table class="table table-striped table-secondary table-hover">
+					<tr>
+						<th>Sl/No.</th>
+						<th>Date</th>
+						<th>Game ID</th>
+						<th>Name</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+					{% for s in data %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td>{{s.date}}</td>
+						<td>{{s.gameid}}</td>
+						<td>{{s.name}}</td>
+						<td>{{s.status}}</td>
+						<td>
+							<a href="/userViewGame?id={{s.gameid}}"
+							><input
+								type="button"
+								name="submit"
+								value="Update Status"
+								class="btn btn-primary"
+						/></a>
+							<a href="/userDeletProgress?id={{s.id}}"
+							><input
+								type="button"
+								name="submit"
+								value="Delete"
+								class="btn btn-danger"
+						/></a>
+					</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+		{% else %}
+		<h3 class="text-center">No Data </h3>
+		{% endif %}
+	</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(() => {
+		$('#messageDiv').fadeOut(5000);
+	});
+</script>
+{% endblock %}

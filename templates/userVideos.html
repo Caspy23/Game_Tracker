@@ -1,0 +1,130 @@
+{% extends "userbase.html" %} {% block content %}
+<!--//header-w3l-->
+<!--/w3l-inner-page-breadcrumb-->
+<style>
+	.w3l-inner-page-breadcrumb,
+	.topHead,
+	body {
+		/* background-color: rgb(221, 220, 220); */
+		background-color: #d0d3d4;
+	}
+	.user {
+		width: 40%;
+		justify-content: space-around;
+	}
+	.user .cont {
+		align-items: center;
+		margin-top: 15%;
+	}
+	.ses {
+		display: flex;
+	}
+	img:hover {
+		cursor: pointer;
+	}
+	.content {
+		width: 80%;
+		padding: 20px;
+		border-left: 1px dotted #000;
+		padding-left: 30px;
+	}
+	.useridea img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-right: 10px;
+	}
+	.ideaContent p {
+		text-align: justify;
+		overflow: hidden;
+	}
+	.ideaContent h4 {
+		margin-top: 20px;
+		text-align: center;
+	}
+	.idea {
+		background-color: #fbfcfc;
+		padding: 20px;
+		border: 1px dashed brown;
+		width: 80%;
+	}
+
+	.line-clamp {
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+	}
+	.search .search__input {
+		display: flex;
+		flex: 1;
+		padding: 10px 50px 10px 20px;
+		height: 48px;
+		font-size: 17px;
+		color: var(--font-color);
+		border: none;
+		font-weight: 400;
+		border-radius: var(--border-radius-full);
+		position: relative;
+		right: 0;
+		background: var(--bg-color);
+		outline: 0;
+		border: 1px solid var(--border-color-light);
+	}
+
+	.search .search__icon {
+		position: absolute;
+		right: 20px;
+		font-size: 15px;
+		top: 15px;
+		cursor: pointer;
+	}
+</style>
+<div class="topHead"><h1 class="text-center">Videos</h1>
+    <hr /></div>
+<!-- //w3l-inner-page-breadcrumb-->
+<!-- /contact-section -->
+<div class="w3l-contact-10" id="contact">
+    <div class="form-41-mian py-lg-5 py-md-4 py-2">
+		<div class="container-fluid d-flex">
+            <div class="user" >
+                <form action="" method="post" enctype="multipart/form-data" style="width: 100%;">
+                    {% csrf_token %}
+                    <input type="file" class="form-control" placeholder="Title" name="video" id="" accept=".mp4,.mov,.wmv,.flv,.avi,.m2ts,.mts,.webm,.mkv" required>
+                    <textarea name="desc" class="form-control" placeholder="Description" id="" style="height: 150px;" required></textarea>
+                    <input type="submit" value="Submit" class="btn btn-primary form-control" >
+                </form>
+			</div>
+			<div class="mx-5 content">
+				{% for p in data %}
+				<div class="idea container">
+					<div class="useridea d-flex" style="justify-content: space-between;">
+						<div class="">
+							<em
+							><small>{{p.date}}</small></em
+							>
+						</div>
+						<div class="btn"><a href="/userDeleteVideo?id={{p.id}}" class="btn btn-danger">Delete</a></div>
+					</div>
+					<div class="ideaContent container">
+						<div class="text-center">
+							<a href="/static/media/{{p.video}}" target="_blank"><video src="/static/media/{{p.video}}" controls width="400" alt=""></video></a>
+						</div>
+						<p class="line-clamp">{{p.desc}}</p>
+
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<!-- //contacts-5-grid -->
+	</div>
+</div>
+
+<!-- //contact-section -->
+<!-- footer -->
+<script>
+	function myFun() {
+		window.location = '/sfChangeImage';
+	}
+</script>
+{% endblock %}

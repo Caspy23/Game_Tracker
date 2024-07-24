@@ -1,0 +1,108 @@
+{% extends "commonbase.html" %} {% block content %}
+<section id="contact" class="contact">
+	<div class="container">
+		<div class="section-title">
+			<h2>User</h2>
+			<h3>Registration</h3>
+		</div>
+
+		<div class="row mt-5">
+			<div class="col-lg-4">
+				<div class="info">
+					<img src="/static/img/recru.png" style="max-width: 100%" alt="" />
+				</div>
+			</div>
+
+			<div class="col-lg-8 mt-5 mt-lg-0">
+				<form action="" method="post" role="form" class="ourForm mt-5">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-md-6 form-group">
+							<input
+								type="text"
+								name="name"
+								class="form-control"
+								id="name"
+								pattern="^[a-zA-Z\s]*$"
+								placeholder="Name"
+								required
+							/>
+						</div>
+						<div class="col-md-6 form-group mt-3 mt-md-0">
+							<input
+								type="email"
+								class="form-control"
+								name="email"
+								id="email"
+								placeholder="Email"
+								required
+							/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 form-group">
+							<input
+								type="text"
+								name="phone"
+								class="form-control"
+								id="name"
+								placeholder="Phone"
+								pattern="[6789][0-9]{9}"
+								maxlength="10"
+								required
+							/>
+						</div>
+						<div class="col-md-6 form-group">
+							<input
+								type="password"
+								name="password"
+								class="form-control"
+								id="name"
+								placeholder="Password"
+								required
+							/>
+						</div>
+					</div>
+					<div class="col-md-6 form-group">
+						<input
+						type="password"
+						name="confirm-password"
+						class="form-control"
+							id="name"
+							placeholder="confirm-password"
+							required
+						/>
+					</div>
+				</div>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<textarea
+								name="address"
+								class="form-control"
+								id="name"
+								placeholder="Address"
+								title="Address"
+								required
+							></textarea>
+						</div>
+					</div>
+					<div class="text-center">
+						<button type="submit" id="subBtn">Submit</button>
+					</div>
+				</form>
+				<div class="{{sty}}" id="messageDiv">{{msg}}</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(() => {
+		$('#messageDiv').fadeOut(5000);
+	});
+</script>
+{% if msg %}
+<script>
+	alert('{{msg}}');
+</script>
+{% endif %} {% endblock %}

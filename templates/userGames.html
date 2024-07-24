@@ -1,0 +1,77 @@
+{% extends "userbase.html" %} {% block content %}
+<style>
+	ul{
+		list-style: none;
+	}
+</style>
+<section id="contact" class="contact">
+	<div class="container">
+		<div class="section-title">
+			<h2></h2>
+			<h3>Games</h3>
+		</div>
+
+		<div class="w3-services-grids py-lg-4 text-center" style="padding: 20px;">
+			<div class="fea-gd-vv row">
+				<form action="" method="post">
+					{% csrf_token %}
+					<div class="d-flex mb-5 container col-5">	
+						<input type="search" name="search" placeholder="search game" class="form-control" id=""><input type="submit" value="🔍" style="border: none;outline: none;background: none;">
+					</div>
+				</form>
+				{% for i in data %}
+				<div class="col-lg-4 col-md-7" style="margin-bottom: 30px">
+					<div class="feature-gd icon-yellow">
+						<div class="icon">
+							<i
+								><img
+									src="{{i.background_image}}"
+									style="
+										width: 300px;
+										height: 300px;
+										padding-right: 26px;
+										padding-bottom: 5px;
+										border-radius: 50%;
+									"
+							/></i>
+						</div>
+						<div class="info" style="margin-top: 50px">
+							<h3>{{i.name}}</h3>
+							<em>{{i.released}}</em><br>
+							<strong>Rating: {{i.rating}}/5 ({{i.ratings_count}})</strong>
+							<ul>
+								<li class="cary-li-w3-agileits">
+									<div class="snipcart-details top_brand_home_details">
+										<form action="#" method="post">
+											<fieldset>
+												<a href="/userViewGame?id={{i.id}}"
+													><input
+														type="button"
+														name="submit"
+														value="View details"
+														class="btn btn-primary"
+												/></a>
+											</fieldset>
+										</form>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(() => {
+		$('#messageDiv').fadeOut(5000);
+	});
+</script>
+{% if msg %}
+<script>
+	alert('{{msg}}');
+</script>
+{% endif %} {% endblock %}

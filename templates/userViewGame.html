@@ -1,0 +1,87 @@
+{% extends "userbase.html" %} {% block content %}
+<section id="contact" class="contact">
+	<div class="container">
+		<div class="section-title">
+			<h2></h2>
+			<h3>{{data.name}}</h3>
+		</div>
+
+		<div class="row mt-5">
+			<div class="col-lg-4">
+				<div class="info">
+					<img src="{{data.background_image}}" style="max-width: 100%" alt="Image" /><br>
+					<textarea readonly
+					id="content"
+					class="form-control"
+					style="height: 20vh; background-color:#fff; border:none;outline: none">{{data.description}}</textarea>
+				</div>
+			</div>
+
+			<div class="col-lg-8 mt-5 mt-lg-0">
+				<form action="" method="post" role="form" class="ourForm">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-md-12 form-group">
+							Requirements:
+							<textarea
+								readonly
+								class="form-control"
+								style="height: 15vh; background-color:#fff; border:none;outline: none"
+								>{% if data.platforms.0.requirements.minimum %}{{data.platforms.0.requirements.minimum}}{% else %}No Data{% endif %}</textarea>
+							</div>
+							<div class="col-md-12 form-group">
+								Recommended:
+								<textarea
+								readonly
+								style="height: 15vh; background-color:#fff; border:none;outline: none"
+								class="form-control"
+							>{% if data.platforms.0.requirements.recommended %}{{data.platforms.0.requirements.recommended}}{% else %}No Data{% endif %}</textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<textarea
+								class="form-control"
+								id="name"
+								name="status"
+								placeholder="Your current status"
+								required
+							></textarea>
+						</div>
+					</div>
+
+					<div class="text-center">
+						<button type="submit" id="subBtn">Submit</button>
+					</div>
+				</form>
+				<div class="{{sty}}" id="messageDiv">{{msg}}</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	// Function to remove HTML tags
+	function removeHTMLTags() {
+		var textareaContent = document.getElementById('content').value;
+		var strippedContent = textareaContent.replace(/<[^>]+>/g, '');
+		document.getElementById('output').textContent = strippedContent;
+	}
+	
+	// Attach event listener to textarea for input event
+	document.getElementById('content').addEventListener('input', removeHTMLTags);
+	
+	// Call removeHTMLTags function initially to remove HTML tags from the initial content
+	removeHTMLTags();
+	</script>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(() => {
+		$('#messageDiv').fadeOut(5000);
+	});
+</script>
+{% if msg %}
+<script>
+	alert('{{msg}}');
+</script>
+{% endif %} {% endblock %}
